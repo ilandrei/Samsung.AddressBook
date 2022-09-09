@@ -1,0 +1,8 @@
+<div class="alerts">
+    <nb-alert *ngFor="let alert of service.alerts" status="danger" closable (close)="close(alert.id)">
+        {{alert.message}}
+    </nb-alert>
+    <nb-alert *ngFor="let alert of service.successAlerts"  accent="success" closable (close)="closeSuccess(alert.id)">
+        {{alert.message}}
+    </nb-alert>
+</div>

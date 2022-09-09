@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Samsung.AddressBook.Application</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Samsung.AddressBook.Application.Interops\Samsung.AddressBook.Application.Interops.csproj" />
+      <ProjectReference Include="..\Samsung.AddressBook.DataAccess.Interops\Samsung.AddressBook.DataAccess.Interops.csproj" />
+    </ItemGroup>
+
+</Project>

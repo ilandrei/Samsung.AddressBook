@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="avatar-row">
+        <img src="assets/avatar.svg" alt="avatar" class="avatar">
+    </div>
+    <div class="contact-details" *ngIf="editMode === false">
+        <div class="avatar-row">
+            <nb-icon icon="star" status="primary" *ngIf="contact?.isFavorite === true"></nb-icon>
+            <h3>{{contact?.name}}</h3>
+            <nb-icon icon="edit" status="primary" class="edit-icon" (click)="editMode = true"></nb-icon>
+        </div>
+        <div class="section" *ngIf="phones.length !== 0">
+            <div class="section-title">Phones</div>
+            <div class="item" *ngFor="let phone of phones">
+                <span class="item-type" *ngIf="phone.type === PhoneType.Mobile">Mobile:</span>
+                <span class="item-type" *ngIf="phone.type === PhoneType.Work">Work:</span>
+                <span class="item-type" *ngIf="phone.type === PhoneType.Home">Home:</span>
+                <span class="item-type" *ngIf="phone.type === PhoneType.Other">Other:</span>
+                {{phone.value}}
+            </div>
+        </div>
+
+        <div class="section" *ngIf="addresses.length !== 0">
+            <div class="section-title">Addresses</div>
+            <div class="item" *ngFor="let address of addresses">
+                <span class="item-type" *ngIf="address.type === AddressType.Other">Other:</span>
+                <span class="item-type" *ngIf="address.type === AddressType.Work">Work:</span>
+                <span class="item-type" *ngIf="address.type === AddressType.Home">Home:</span>
+                {{address.value}}
+            </div>
+        </div>
+    </div>
+    <div class="contact-details" *ngIf="editMode === true">
+        <div class="row">
+            <div class="checkbox-container">
+                <nb-checkbox [(checked)]="isFavoriteEdit">Favorite</nb-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <label for="name">Name</label>
+            <input nbInput [(ngModel)]="nameEdit" type="text" name="name" id="input" placeholder="Contact Name"
+                fullWidth>
+
+
+        </div>
+        <div class="section">
+            <div class="section-title">
+                Phones
+            </div>
+
+            <div class="option-input-row" *ngFor="let p of phones">
+                <nb-select placeholder="Phone Type" [(selected)]="p.type">
+                    <nb-option [value]="PhoneType.Mobile">Mobile</nb-option>
+                    <nb-option [value]="PhoneType.Work">Work</nb-option>
+                    <nb-option [value]="PhoneType.Home">Home</nb-option>
+                    <nb-option [value]="PhoneType.Other">Other</nb-option>
+                </nb-select>
+                <input nbInput [(ngModel)]="p.value" [OnlyNumber]="true" name="createPhone" id="createPhone"
+                    placeholder="+40 760 998 117" fullWidth>
+                <button nbButton type="button" [disabled]="!(p.value != '' && p.value!= null && p.type != undefined)"
+                    (click)="updatePhone(p)">
+                    <nb-icon icon="checkmark-square-2" status="success"></nb-icon>
+                </button>
+                <button nbButton type="button" status="danger" (click)="deletePhone(p.id)">
+                    <nb-icon icon="trash-2"></nb-icon>
+                </button>
+            </div>
+
+
+            <div class="option-input-row">
+                <nb-select placeholder="Phone Type" [(selected)]="phoneType">
+                    <nb-option [value]="PhoneType.Mobile">Mobile</nb-option>
+                    <nb-option [value]="PhoneType.Work">Work</nb-option>
+                    <nb-option [value]="PhoneType.Home">Home</nb-option>
+                    <nb-option [value]="PhoneType.Other">Other</nb-option>
+                </nb-select>
+                <input nbInput [(ngModel)]="phoneEdit" [OnlyNumber]="true" name="createPhone" id="createPhone"
+                    placeholder="+40 760 998 117" fullWidth>
+                <button nbButton type="button" *ngIf="contactId!=0"
+                    [disabled]="!(phoneEdit != '' && phoneEdit != null && phoneType != undefined)" (click)="addPhone()">
+                    <nb-icon icon="checkmark-square-2" status="success"></nb-icon>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                Addresses
+            </div>
+
+            <div class="option-input-row" *ngFor="let a of addresses">
+                <nb-select placeholder="Address Type" [(selected)]="a.type">
+                    <nb-option [value]="AddressType.Work">Work</nb-option>
+                    <nb-option [value]="AddressType.Home">Home</nb-option>
+                    <nb-option [value]="AddressType.Other">Other</nb-option>
+                </nb-select>
+                <input nbInput [(ngModel)]="a.value" type="text" placeholder="A brand new address" fullWidth>
+                <button nbButton type="button" [disabled]="!(a.value != '' && a.value!= null && a.type != undefined)"
+                    (click)="updateAddress(a)">
+                    <nb-icon icon="checkmark-square-2" status="success"></nb-icon>
+                </button>
+                <button nbButton type="button" status="danger" (click)="deleteAddress(a.id)">
+                    <nb-icon icon="trash-2"></nb-icon>
+                </button>
+            </div>
+
+            <div class="option-input-row">
+                <nb-select placeholder="Address Type" [(selected)]="addressType">
+                    <nb-option [value]="AddressType.Work">Work</nb-option>
+                    <nb-option [value]="AddressType.Home">Home</nb-option>
+                    <nb-option [value]="AddressType.Other">Other</nb-option>
+                </nb-select>
+                <input nbInput [(ngModel)]="addressEdit" placeholder="A brand new address" fullWidth>
+                <button nbButton type="button" *ngIf="contactId!=0"
+                    [disabled]="!(addressEdit!= '' && addressEdit != null && addressType != undefined)"
+                    (click)="addAddress()">
+                    <nb-icon icon="checkmark-square-2" status="success"></nb-icon>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <div class="avatar-row">
+        <button nbButton type="button" (click)="cancelClicked()">{{editMode?'Cancel':'Back'}}</button>
+        <button nbButton type="button" status="success" (click)="saveClicked()" *ngIf="editMode"
+            [disabled]="nameEdit === undefined || nameEdit === ''">Save</button>
+    </div>
+</div>

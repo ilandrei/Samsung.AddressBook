@@ -1,0 +1,43 @@
+<app-loader></app-loader>
+<app-alerts></app-alerts>
+<nb-layout>
+
+  <nb-layout-column>
+    <div class="main-list-container">
+      <div class="list-header">
+        <div class="row">
+          <h3>Contacts</h3>
+        </div>
+        <div class="space-between-row">
+          <div class="header-controls">
+            <div class="input-container">
+              <input type="text" nbInput [(ngModel)]="searchText" placeholder="Search Contact"
+                (keyup.enter)="searchChanged()">
+            </div>
+            <div class="checkbox-container">
+              <nb-checkbox (checkedChange)="toggleFavorites($event)" [checked]="onlyFavorites">Favorites</nb-checkbox>
+            </div>
+          </div>
+          <button nbButton type="button" status="primary" (click)="selectId(0)">Add Contact</button>
+        </div>
+      </div>
+      <div class="items-container">
+        <cdk-virtual-scroll-viewport itemSize="50" class="virtual-viewport">
+          <div class="contact" *cdkVirtualFor="let contact of contacts">
+            <div class="contact-info" (click)="selectId(contact.id)">
+              <span class="contact-name">{{contact.name}}</span>
+              <nb-icon icon="star" class="blue-star" *ngIf="contact.isFavorite"></nb-icon>
+            </div>
+            <button nbButton type="button" (click)="deleteContact(contact.id)" status="danger" ghost>
+              <nb-icon icon="trash-2"></nb-icon>
+            </button>
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+    </div>
+    <div class="detail-container" *ngIf="selectedId !== null">
+      <app-contact-detail [contactId]="selectedId!" (shouldRefresh)="fetchData()"></app-contact-detail>
+    </div>
+  </nb-layout-column>
+
+</nb-layout>

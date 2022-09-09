@@ -1,0 +1,8 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=720cd230_002Df3cb_002D4f4a_002Db5f0_002Ddf87be252864/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AddContact_Valid_Model_ShouldReturn_Success" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::948BF405-83C9-4EE6-9297-3A9AF4B7F296::net6.0::Samsung.AddressBook.Tests.ContactServiceTests.AddContact_Valid_Model_ShouldReturn_Success&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::948BF405-83C9-4EE6-9297-3A9AF4B7F296::net6.0::Samsung.AddressBook.Tests.ContactServiceTests.AddContact_ContactFail_ShouldReturn_Error&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::948BF405-83C9-4EE6-9297-3A9AF4B7F296::net6.0::Samsung.AddressBook.Tests.ContactRepositoryTests.GetById_WrongId_ShouldReturn_Error&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
